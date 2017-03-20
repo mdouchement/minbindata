@@ -105,5 +105,6 @@ func minifyHTMLTemplate(m *minify.M, data []byte) ([]byte, error) {
 	w := new(bytes.Buffer)
 	hm := &html.Minifier{}
 	err := hm.Minify(m, w, r, nil)
-	return w.Bytes(), err
+	b := bytes.Replace(w.Bytes(), []byte{'\n'}, []byte{}, -1)
+	return bytes.Replace(b, []byte{'\r'}, []byte{}, -1), err
 }
