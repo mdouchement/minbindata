@@ -7,9 +7,9 @@ import (
 	"strings"
 
 	"github.com/juju/errors"
+	"github.com/mdouchement/minbindata/minifier"
 	min "github.com/tdewolff/minify"
 	"github.com/tdewolff/minify/css"
-	"github.com/tdewolff/minify/js"
 	"github.com/tdewolff/minify/json"
 	"github.com/tdewolff/minify/svg"
 	"github.com/tdewolff/minify/xml"
@@ -27,7 +27,7 @@ var filetypeMime = map[string]string{
 func minify(base, dst string, recursive bool) error {
 	m := min.New()
 	m.Add("text/css", &css.Minifier{})
-	m.Add("text/javascript", &js.Minifier{})
+	m.Add("text/javascript", &minifier.Minifier{})
 	// TODO multiline string with backticks
 	m.Add("image/svg+xml", &svg.Minifier{})
 	m.Add("application/json", &json.Minifier{})
