@@ -87,7 +87,8 @@ func mime(path string) string {
 	if len(ext) > 0 {
 		ext = ext[1:]
 	}
-	if m, ok := filetypeMime[ext]; ok {
+	if m, ok := filetypeMime[ext]; ok && !strings.HasSuffix(path, ".min."+ext) {
+		// Asset not already minified
 		return m
 	}
 	return filetypeMime["binary"]
