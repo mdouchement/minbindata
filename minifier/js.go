@@ -96,7 +96,6 @@ func (o *Minifier) Minify(m *minify.M, w io.Writer, r io.Reader, _ map[string]st
 			lineTerminatorQueued = false
 			whitespaceQueued = false
 		}
-		l.Free(len(data))
 	}
 }
 
